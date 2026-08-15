@@ -96,7 +96,7 @@ output "service_principals_saml_metadata_url" {
 }
 output "service_principals_saml_single_sign_on" {
   description = "Map of saml_single_sign_on values across all service_principals, keyed the same as var.service_principals"
-  value       = { for k, v in azuread_service_principal.service_principals : k => v.saml_single_sign_on if v.saml_single_sign_on != null && length(v.saml_single_sign_on) > 0 }
+  value       = { for k, v in azuread_service_principal.service_principals : k => one(v.saml_single_sign_on) if v.saml_single_sign_on != null && length(v.saml_single_sign_on) > 0 }
 }
 output "service_principals_service_principal_names" {
   description = "Map of service_principal_names values across all service_principals, keyed the same as var.service_principals"
